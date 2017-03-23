@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href={% static 'images/bootstrap.min.css'%}>
+        <link rel="stylesheet" type="text/css" href={% static 'images/style.css'%}>
+        <title>Trsuare Gram</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-static-top text-center">
+        	<a href="/">
+        		<img src="{% static 'images/logo.png' %}" alt="Gold Tresurres">
+        	</a></nav>
+
+        <main class="container" role="main">
+           {% block content%}
+
+            {% endblock %}
+        </main>
+    </body>
+</html>
