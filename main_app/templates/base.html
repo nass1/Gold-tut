@@ -9,7 +9,15 @@
         <nav class="navbar navbar-default navbar-static-top text-center">
         	<a href="/">
         		<img src="{% static 'images/logo.png' %}" alt="Gold Tresurres">
-        	</a></nav>
+        	</a>
+        	{% if user.is_authenticated %}
+            <a  href="{% url 'profile' user.username %}">{{ user.username }}</a>
+
+            <a  href="{% url 'logout' %}">/logout</a>
+            {% else %}
+            <a  href="{% url 'login' %}">login</a>
+            {% endif %}
+        </nav>
 
         <main class="container" role="main">
            {% block content%}
