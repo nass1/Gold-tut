@@ -1,11 +1,19 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, HttpResponse
 from .models import Treasure
 from .forms import TreasureForm, LoginForm, RegisterForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
 def like_treasure(request):
-
+    treasure_id = request.Get.get("treasure_id")
+    like = 0
+    if (treasure_id):
+        treasure = Treasure.objects.get(id=int(treasure_id))
+        if treasure is not None:
+            likes = treasure.likes + 1
+            treasure.likes = likes
+            treasure.save()
+    return HttpResponse(likes)
 
 
 def register(request):

@@ -7,5 +7,8 @@
     <p>{{treaures.value}}</p>
     <p>{{treaures.location}}</p>
 
+ <button id ="likes" data-id="{{t.id}}" class="btn btn-mini btn-danger glyphicon glyphicon-heart" type="button">
+                        {% if t.likes > 0  %} {{ t.likes }} {% endif %}
+                    </button>
 
 {% endblock %}
