@@ -1,8 +1,28 @@
 from django.shortcuts import render, HttpResponseRedirect
 from .models import Treasure
-from .forms import TreasureForm, LoginForm
+from .forms import TreasureForm, LoginForm, RegisterForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+
+def like_treasure(request):
+
+
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            u = form.cleaned_data['name']
+            p = form.cleaned_data['password']
+            e = form.cleaned_data['email']
+            user = User.objects.create_user(u, e, p)
+            user.save()
+            return HttpResponseRedirect('/')
+        else:
+            print "Wrong details"
+    else:
+        form = RegisterForm()
+        return render(request, 'reg.html', {'form': form})
 
 def index(request):
     treaures = Treasure.objects.all()
@@ -53,6 +73,8 @@ def profile(request, username):
     return render(request,'profile.html',{"username":username,
                                           "treaures": treaures}
                  )
+
+
 
 
 
